@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,7 @@ class BotonesPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 _titulos(),
+                _botonesRedondeados(),
               ],
             ),
           )
@@ -108,6 +111,80 @@ class BotonesPage extends StatelessWidget {
               icon: Icon(Icons.supervised_user_circle, size: 30.0),
               title: Container())
         ],
+      ),
+    );
+  }
+
+  Widget _botonesRedondeados() {
+    return Table(
+      children: [
+        TableRow(children: [
+          _crearBotonRedondeado(Colors.blue, Icons.gradient, 'General'),
+          _crearBotonRedondeado(Colors.pinkAccent, Icons.shop, 'General')
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(Colors.red, Icons.shuffle, 'General'),
+          _crearBotonRedondeado(Colors.orangeAccent, Icons.signal_wifi_off, 'General')
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(Colors.tealAccent, Icons.smartphone, 'General'),
+          _crearBotonRedondeado(Colors.redAccent, Icons.slideshow, 'General')
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(Colors.yellowAccent, Icons.sms_failed, 'General'),
+          _crearBotonRedondeado(Colors.amberAccent, Icons.close, 'General')
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(Colors.indigoAccent, Icons.cloud_done, 'General'),
+          _crearBotonRedondeado(Colors.lightGreen, Icons.code, 'General')
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(Colors.cyanAccent, Icons.phone, 'General'),
+          _crearBotonRedondeado(Colors.brown, Icons.photo_album, 'General')
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(Colors.lime, Icons.crop_free, 'General'),
+          _crearBotonRedondeado(Colors.orange, Icons.credit_card, 'General')
+        ]),
+      ],
+    );
+  }
+
+  Widget _crearBotonRedondeado(Color color, IconData icono, String texto) {
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+        child: Container(
+          height: 180.0,
+          margin: EdgeInsets.all(15.0),
+          decoration: BoxDecoration(
+              color: Color.fromRGBO(62, 66, 107, 0.7),
+              borderRadius: BorderRadius.circular(20.0)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(
+                height: 5.0,
+              ),
+              CircleAvatar(
+                radius: 35.0,
+                backgroundColor: color,
+                child: Icon(
+                  icono,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+              ),
+              Text(
+                texto,
+                style: TextStyle(color: color),
+              ),
+              SizedBox(
+                height: 5.0,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
